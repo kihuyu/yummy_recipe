@@ -1,0 +1,29 @@
+.login {
+    height:100px;
+    width:200px;
+    padding:10px;
+	text-align: center;
+	margin: 0px auto;
+}
+
+.login input {
+    padding:10px;
+    text-align: center;
+}
+
+h1 {
+	font-style: sans-serif;
+	text-align: center;
+}
+
+form span {
+	display: block;
+}
+
+.registration {
+    height:100px;
+    width:200px;
+    padding:10px;
+	text-align: center;
+	margin: 0px auto;
+}
