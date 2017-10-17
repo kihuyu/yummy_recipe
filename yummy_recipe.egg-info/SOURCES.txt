@@ -1,0 +1,9 @@
+MANIFEST.in
+yummy_recipe/__init__.py
+yummy_recipe/schema.sql
+yummy_recipe/yummy_recipe.py
+yummy_recipe.egg-info/PKG-INFO
+yummy_recipe.egg-info/SOURCES.txt
+yummy_recipe.egg-info/dependency_links.txt
+yummy_recipe.egg-info/requires.txt
+yummy_recipe.egg-info/top_level.txt

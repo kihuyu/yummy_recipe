@@ -1,0 +1,2 @@
+graft yummy_recipe/static
+include yummy_recipe/schema.sql
