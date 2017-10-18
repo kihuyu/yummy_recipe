@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<head>
-<link href="style.css" rel="stylesheet" type="text/css" />
-<title>Yummy Recipe</title>
-</head>
+{% extends "layout.html" %}
 
-<body>
-  <h1>Yummy Login</h1>
-  <div class="login">
-    <form>
-      <input type="text" placeholder="username" id="username">
-      <input type="text" placeholder="password" id="password">
-      <input type="submit" value="Enter">
+{% block body%}
+  <h2>Yummy Login</h2>
+  {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+    <form action="/" method=post>
+      <dl>
+        <dt>Username:
+        <dd><input type=text name=username>
+        <dt>Password:
+        <dd><input type=password name=password>
+        <dd><input type=submit value=Login>
+        <dd><button onclick="location.href='/register'" type="button">
+     Register</button>
+        </dl>
+
+
     </form>
-  </div>
-
-</body>
-</html>
+    {% endblock %}
