@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body%}
+  <h2>Add recipe</h2>
+    <form action="/addrecipe" method="post" class="addrecipe">
+      <dl>
+          <dt>Recipe:
+          <dd><input type=text name=recipename>Recipe Name</input>
+          <dd><input type=text name=steps>Steps</input>
+          <dd><input type=submit value=Register>
+          </dl>
+    </form>
+
+    {% endblock %}
