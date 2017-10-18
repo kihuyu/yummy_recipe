@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body%}
+  <h2>Add recipe category</h2>
+    <form action="/addrecipecategory" method="post" class="addrecipecategory">
+      <dl>
+          <dt>Recipe Category:
+          <dd><input type=text name=recipecategory>
+          <dd><input type=text name=furtherinfo>
+          <dd><input type=submit value=Register>
+          </dl>
+    </form>
+
+    {% endblock %}
