@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <h2>Recipe Categories</h2>
+  <ul class=entries>
+    {% for key, value in entries.iteritems()%}
+    <li><h2>{{ key }}<button  class="button">DEL</button><button class="button">EDIT</button></h2>{{ value|safe}}
+      {%else %}
+     <li><em>No Recipe Category</em>
+  {% endfor %}
+      <li><button onclick="location.href='/addrecipecategory'" type="button">Add Recipe Category</button>
+      </ul>
+
+      <h2>Recipes</h2>
+      <ul class=recipez>
+        {% for key, value in recipez.iteritems()%}
+        <li><h2>{{ key }}<button  class="button">DEL</button><button class="button">EDIT</button></h2>{{ value|safe}}
+         {%else %}
+         <li><em>No Recipes</em>
+      {% endfor %}
+          <li><button onclick="location.href='/addrecipe'" type="button">Add Recipe</button>
+          </ul>
+
+      <button onclick="location.href='/'" type="button">Logout</button>
+{% endblock %}

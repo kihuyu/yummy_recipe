@@ -7,10 +7,10 @@
 <body>
   <h1>Yummy Recipe</h1>
   <div class="recipe">
-      <li><a href="?">First Recipe</a> <input type="image" src="61456.svg" width="48" height="48"> <input type="image" src="delete1600.png" width="48" height="48"></li>
-      <li><a href="?">Second Recipe</a><input type="image" src="61456.svg" width="48" height="48"> <input type="image" src="delete1600.png" width="48" height="48"></li>
-	  <li><a href="?">Third Recipe</a><input type="image" src="61456.svg" width="48" height="48"><input type="image" src="delete1600.png" width="48" height="48"></li>
-	  <input type="submit" value="New Recipe">
+    {% for recipecategory in recipecategorys%}
+      <li><h2>{{ recipecategory.recipe_category }}</h2>{{ recipecategory.further_info|safe }}
+      <li><em> No recipes </em>
+  <input type="submit" value="New Recipe">
   </div>
 
 </body>
