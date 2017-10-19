@@ -5,9 +5,13 @@
     <form action="/addrecipe" method="post" class="addrecipe">
       <dl>
           <dt>Recipe:
-          <dd><input type=text name=recipename>Recipe Name</input>
-          <dd><input type=text name=steps>Steps</input>
-          <dd><input type=submit value=Register>
+          <dd>Recipe Name<input type=text name=recipename class="textbox"></dd>
+          <dd>Steps<input type=text name=steps class="textbox"></input></dd>
+          <dd><select name=recipecategory>
+            <option>{{ entries.recipecategory }}</option>
+          </select>
+        </dd>
+        <dd><input type=submit value=Register>
           </dl>
     </form>
 
