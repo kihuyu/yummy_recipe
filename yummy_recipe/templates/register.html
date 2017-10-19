@@ -1,28 +1,19 @@
-<!DOCTYPE html>
-<head>
-<link href="style.css" rel="stylesheet" type="text/css" />
-<title>Yummy Recipe</title>
-</head>
+{% extends "layout.html" %}
 
-<body>
-  <h1>Yummy Registration</h1>
-    <form action="{{url_for('yummy_recipe.registration')}}" method="post" class="registration">
-      <span>
-      <input type="text" placeholder="Name" id="name">
-      </span>
-      <span>
-      <input type="text" placeholder="username" id="username">
-      </span>
-      <span>
-      <input type="text" placeholder="password" id="password">
-      </span>
-      <span>
-      <input type="text" placeholder="confirm password" id="confirmpassword">
-      </span>
-      <span>
-      <input type="submit" value="Register">
-      </span>
+{% block body%}
+  <h2>Yummy Registration</h2>
+    <form action="/register" method="post" class="register">
+      <dl>
+          <dt>Name:
+          <dd><input type=text name=name>
+          <dt>Username:
+          <dd><input type=text name=username>
+          <dt>Password:
+          <dd><input type=password name=password>
+          <dt>Confirm Password:
+          <dd><input type=password name=confirmpassword>
+          <dd><input type=submit value=Register>
+          </dl>
     </form>
 
-</body>
-</html>
+    {% endblock %}
