@@ -3,9 +3,9 @@ import sqlite3
 from sqlalchemy.orm import sessionmaker
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 from tabledef import User, Recipecategory, Recipe
-users = {}
-recipecategories = {}
-recipes = {}
+current_user = User('admin', 'admin', 'admin')
+current_category = Recipecategory('No category')
+current_recipe = Recipe('No recipe', 'No Steps', current_category)
 user_session = False
 
 app = Flask(__name__)
@@ -26,46 +26,71 @@ app.config.from_envvar('YUMMY_RECIPE_SETTINGS', silent=True)
 def recipecategorys():
     if user_session == False:
         abort(401)
-    entries = recipecategories
-    recipez = recipes
-    print(str(recipecategories))
-    return render_template('recipecategory.html', entries=entries, recipez=recipez)
+    global current_category
+    global current_recipe
+    entries = current_category
+    recipes = current_recipe
+    print(recipes.recipecategory)
+    return render_template('recipecategory.html', entries=entries, recipes=recipes)
+
+@app.route('/deleterecipecategory', methods=['POST'])
+def delrecipecategorys():
+    global current_category
+    global current_recipe
+    current_category = Recipecategory('No category')
+    entries = current_category
+    recipes = current_recipe
+    return render_template('recipecategory.html', entries=entries, recipes=recipes)
+
+
+@app.route('/deleterecipe', methods=['POST'])
+def delrecipes():
+    global current_recipe
+    global current_category
+    current_recipe = Recipe('No recipe', 'No Steps', current_category)
+    entries = current_category
+    recipes = current_recipe
+    return render_template('recipecategory.html', entries=entries, recipes=recipes)
 
 
 @app.route('/addrecipecategory', methods=['GET','POST'])
 def add_recipe_category():
+    global user_session
+    global current_category
     if user_session == False:
         abort(401)
     if request.method == 'POST':
-        newrecipe = str(request.form['recipecategory'])
-        recipecategories[newrecipe] = str(request.form['furtherinfo'])
+        current_category = Recipecategory(request.form['recipecategory'])
         flash('New category succesfully added')
         return redirect('/recipecategory')
     return render_template('addrecipecategory.html')
 
+
 @app.route('/addrecipe', methods=['GET','POST'])
 def add_recipe():
+    global user_session
+    global current_recipe
+    global current_category
+    entries = current_category
     if user_session == False:
         abort(401)
     if request.method == 'POST':
-        newrecipe = str(request.form['recipename'])
-        recipes[newrecipe] = str(request.form['steps'])
+        current_recipe = Recipe(request.form['recipename'], request.form['steps'], current_category)
+        current_recipe.recipecategory = request.form.get('recipecategory')
         flash('New Recipe succesfully added')
         return redirect('/recipecategory')
-    return render_template('addrecipe.html')
+    return render_template('addrecipe.html', entries=entries)
 
 
-@app.route('/add', methods=['POST'])
-def add_entry():
-    if not session.get('logged_in'):
-        abort(401)
-    flash('New entry was successfully posted')
-    return redirect(url_for('show_entries'))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        users[request.form['username']] = request.form['password']
+        global current_user
+        if (request.form['password'] != request.form['confirmpassword']):
+            flash('Passwords do not match')
+            return redirect('/register')
+        current_user = User(request.form['username'], request.form['password'], request.form['name'])
         flash('New user successfully added')
         return redirect('/')
     return render_template('register.html')
@@ -74,9 +99,10 @@ def register():
 def login():
  
     if request.method == 'POST':
-        key = request.form['username']
-        value = request.form['password']
-        if key in users and value == users[key]:
+        userattempt = request.form['username']
+        passwordattempt = request.form['password']
+        global current_user
+        if userattempt == current_user.username and passwordattempt == current_user.password: 
             global user_session
             user_session = True
             return redirect('/recipecategory')
