@@ -34,3 +34,8 @@ form span {
     vertical-align: middle;
     line-height:30px;
 }
+
+.textbox {
+    position: relative;
+    align: right;
+}
