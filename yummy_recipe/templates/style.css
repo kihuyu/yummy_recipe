@@ -27,3 +27,8 @@ form span {
 	text-align: center;
 	margin: 0px auto;
 }
+
+.button {
+    height:46px;
+    width:46px;
+}
