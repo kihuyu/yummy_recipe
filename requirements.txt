@@ -114,7 +114,7 @@ texttable==0.8.8
 traitlets==4.3.2
 uritemplate==3.0.0
 urlgrabber==3.10.1
-urllib3==1.22
+urllib3==1.26.5
 vcstools==0.1.39
 virtualenv==15.0.3
 virtualenv-clone==0.2.6
